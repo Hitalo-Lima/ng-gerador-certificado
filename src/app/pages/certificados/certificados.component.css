@@ -1,0 +1,58 @@
+.custom-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+.custom-subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #647488;
+}
+
+.content-titles {
+  height: 60px;
+  margin-bottom: 32px;
+  gap: 4px;
+}
+
+.custom-card {
+  max-width: 672px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  align-items: center;
+  padding: 48px 32px 56px 32px;
+}
+
+.custom-card i {
+  font-size: 48px;
+  color: #647488;
+}
+
+.custom-warning-titles {
+  gap: 2px;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #1a1856;
+}
+
+.card-subtitle {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #647488;
+}
