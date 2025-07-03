@@ -63,10 +63,10 @@ label {
 }
 
 .remove-btn i:hover {
-    background-color: #e2e8f0;
+  background-color: #e2e8f0;
 }
 
-.custom-input  {
+.custom-input {
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   padding: 8px 12px;
@@ -76,6 +76,10 @@ label {
 .custom-input:focus {
   border: 1px solid #3b5ac2;
   box-shadow: none;
+}
+
+.custom-input-group {
+  margin-bottom: 20px !important;
 }
 
 .custom-input-group:has(input:focus) label {
@@ -96,6 +100,6 @@ label {
   vertical-align: middle;
 }
 
-.custom-input-group:has(.error-message) > label{
+.custom-input-group:has(.error-message)>label {
   color: #d71d1d;
 }
