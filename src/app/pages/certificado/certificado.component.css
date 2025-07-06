@@ -16,6 +16,10 @@ i {
   font-size: 14px;
 }
 
+.btn-voltar {
+  cursor: pointer;
+}
+
 i {
   font-size: 20px;
 }
