@@ -20,10 +20,11 @@
     <div class="custom-input-group mb-3 d-flex align-items-end">
       <div class="flex-grow-1 me-2">
         <label class="form-label" for="atividade">Atividade</label>
-        <input [(ngModel)]="atividade" name="atividade" #atividadeRef="ngModel" maxlength="50" required type="text"
-          id="atividade" class="form-control custom-input" placeholder="Atividade exercida">
+        <input [(ngModel)]="atividade" name="atividade" #atividadeRef="ngModel" #atividadeInput maxlength="50" required
+          type="text" id="atividade" class="form-control custom-input" placeholder="Atividade exercida">
       </div>
-      <app-secondary-button textoBotao="Adicionar" phClass="ph ph-plus" [disabled]="atividade.length == 0" />
+      <app-secondary-button (click)="adicionarAtividade(atividadeInput)" textoBotao="Adicionar" phClass="ph ph-plus"
+        [disabled]="atividade.length == 0" />
     </div>
     <div class="atividade-group">
       <label class="form-label">Lista de atividades</label>
@@ -31,7 +32,7 @@
         @for (atividade of atividades; track $index) {
         <div class="item">
           <span class="item-text">{{atividade}}</span>
-          <div class="remove-btn">
+          <div (click)="excluirAtividade($index)" class="remove-btn">
             <i class="ph-bold ph-x remove-btn"></i>
           </div>
         </div>

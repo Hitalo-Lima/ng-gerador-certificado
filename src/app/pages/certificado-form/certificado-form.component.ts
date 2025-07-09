@@ -18,7 +18,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 export class CertificadoFormComponent {
   nome: string = '';
   atividade: string = '';
-  atividades: string[] = ['Angular', 'React'];
+  atividades: string[] = [];
 
   campoInvalido(control: NgModel) {
     return control.invalid && control.touched;
@@ -26,5 +26,15 @@ export class CertificadoFormComponent {
 
   formValido(): boolean {
     return this.atividades.length > 0 && this.nome.length > 0;
+  }
+
+  adicionarAtividade(inputAtividade: HTMLInputElement) {
+    this.atividades.push(this.atividade);
+    this.atividade = '';
+    inputAtividade.focus();
+  }
+
+  excluirAtividade(index: number) {
+    this.atividades.splice(index, 1);
   }
 }
