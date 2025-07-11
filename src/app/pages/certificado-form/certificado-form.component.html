@@ -24,7 +24,7 @@
           type="text" id="atividade" class="form-control custom-input" placeholder="Atividade exercida">
       </div>
       <app-secondary-button (click)="adicionarAtividade(atividadeInput)" textoBotao="Adicionar" phClass="ph ph-plus"
-        [disabled]="atividade.length === 0" />
+        [disabled]="!atividade || atividade.length === 0" />
     </div>
     <div class="atividade-group">
       <label class="form-label">Lista de atividades</label>
@@ -43,6 +43,6 @@
       </div>
 
     </div>
-    <app-primary-button [disabled]="!formValido()" textoBotao="Gerar certificado" />
+    <app-primary-button (click)="submit()" [disabled]="!formValido()" textoBotao="Gerar certificado" />
   </div>
 </form>
