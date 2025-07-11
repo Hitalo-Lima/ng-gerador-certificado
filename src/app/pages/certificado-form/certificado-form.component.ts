@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { SecondaryButtonComponent } from '../../_components/secondary-button/secondary-button.component';
 import { PrimaryButtonComponent } from '../../_components/primary-button/primary-button.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Certificado } from '../../interfaces/certificado';
+import { CertificadoService } from '../../_services/certificado.service';
 
 @Component({
   selector: 'app-certificado-form',
@@ -17,9 +18,12 @@ import { Certificado } from '../../interfaces/certificado';
   styleUrl: './certificado-form.component.css',
 })
 export class CertificadoFormComponent {
+  constructor(private certificadoService: CertificadoService) {}
+
   certificado: Certificado = {
     atividades: [],
     nome: '',
+    dataEmissao: '',
   };
 
   atividade: string = '';
@@ -35,6 +39,10 @@ export class CertificadoFormComponent {
   }
 
   adicionarAtividade(inputAtividade: HTMLInputElement) {
+    if (this.atividade.length === 0) {
+      return;
+    }
+
     this.certificado.atividades.push(this.atividade);
     this.atividade = '';
     inputAtividade.focus();
@@ -48,6 +56,20 @@ export class CertificadoFormComponent {
     if (!this.formValido()) {
       return;
     }
-    console.log(this.certificado);
+
+    this.certificado.dataEmissao = this.getDataAtual();
+
+    this.certificadoService.adicionarCertificado(this.certificado);
+  }
+
+  getDataAtual(): string {
+    const dataAtual = new Date();
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+    return dataFormatada;
   }
 }
