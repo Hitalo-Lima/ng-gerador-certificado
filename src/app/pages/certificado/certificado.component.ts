@@ -1,8 +1,9 @@
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SecondaryButtonComponent } from './../../_components/secondary-button/secondary-button.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Certificado } from '../../interfaces/certificado';
 import { CertificadoService } from '../../_services/certificado.service';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-certificado',
@@ -13,6 +14,8 @@ import { CertificadoService } from '../../_services/certificado.service';
 export class CertificadoComponent implements OnInit {
   id: string | null = null;
   certificado: Certificado | undefined;
+
+  @ViewChild('certificadoContainer') certificadoElement!: ElementRef;
 
   constructor(
     private certificadoService: CertificadoService,
@@ -26,5 +29,23 @@ export class CertificadoComponent implements OnInit {
         (item) => item.id == this.id
       );
     });
+  }
+
+  downloadCertificado() {
+    if (this.certificado != undefined) {
+      html2canvas(this.certificadoElement.nativeElement, { scale: 2 }).then(
+        (canvas) => {
+          const link = document.createElement('a');
+          const url = `certificado_${this.certificado?.nome.replaceAll(
+            ' ',
+            '_'
+          )}_${this.certificado?.dataEmissao}`;
+
+          link.href = canvas.toDataURL('image/png');
+          link.download = url.toLowerCase();
+          link.click();
+        }
+      );
+    }
   }
 }
