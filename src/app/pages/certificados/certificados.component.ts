@@ -15,16 +15,19 @@ import { Certificado } from '../../interfaces/certificado';
 export class CertificadosComponent implements OnInit {
   id: string | null = null;
   certificado: Certificado | undefined;
+  certificados: Certificado[] = [];
 
   constructor(
-    private CertificadoService: CertificadoService,
+    private certificadoService: CertificadoService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.certificados = this.certificadoService.certificados;
+
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      this.certificado = this.CertificadoService.certificados.find(
+      this.certificado = this.certificadoService.certificados.find(
         (item) => item.id == this.id
       );
       console.log(this.certificado);
