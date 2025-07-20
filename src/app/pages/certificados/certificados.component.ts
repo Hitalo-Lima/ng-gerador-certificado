@@ -13,24 +13,11 @@ import { Certificado } from '../../interfaces/certificado';
   styleUrl: './certificados.component.css',
 })
 export class CertificadosComponent implements OnInit {
-  id: string | null = null;
-  certificado: Certificado | undefined;
   certificados: Certificado[] = [];
 
-  constructor(
-    private certificadoService: CertificadoService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private certificadoService: CertificadoService) {}
 
   ngOnInit(): void {
     this.certificados = this.certificadoService.certificados;
-
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      this.certificado = this.certificadoService.certificados.find(
-        (item) => item.id == this.id
-      );
-      console.log(this.certificado);
-    });
   }
 }
